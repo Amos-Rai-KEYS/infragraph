@@ -1,0 +1,45 @@
+{
+    "format": "JSON",
+    "title": "Demo",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "leaf01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
+            },
+            "leaf02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
+            },
+            "spine01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 20,
+                "os": "cumulus-vx-5.16.1"
+            },
+            "server01": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404"
+            },
+            "server02": {
+                "cpu": 2,
+                "memory": 2048,
+                "storage": 10,
+                "os": "generic/ubuntu2404"
+            }
+        },
+        "links": [
+            [{"interface": "swp1", "node": "leaf01"}, {"interface": "eth1", "node": "server01"}],
+            [{"interface": "swp2", "node": "leaf01"}, {"interface": "swp1", "node": "spine01"}],
+            [{"interface": "swp1", "node": "leaf02"}, {"interface": "eth1", "node": "server02"}],
+            [{"interface": "swp2", "node": "leaf02"}, {"interface": "swp2", "node": "spine01"}]
+        ]
+    }
+}
