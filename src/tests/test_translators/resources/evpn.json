@@ -1,0 +1,1099 @@
+{
+    "format": "JSON",
+    "ztp": null,
+    "content": {
+        "nodes": {
+            "border01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 2750,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:33:01:01",
+                "management_ip": "192.168.200.16",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "border02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 3025,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:33:01:02",
+                "management_ip": "192.168.200.17",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "fw1": {
+                "cpu": 1,
+                "memory": 2048,
+                "storage": 10,
+                "positioning": {
+                    "x": 3025,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:33:01:03",
+                "management_ip": "192.168.200.20",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "fw2": {
+                "cpu": 1,
+                "memory": 2048,
+                "storage": 10,
+                "positioning": {
+                    "x": 3300,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:33:01:04",
+                "management_ip": "192.168.200.21",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "leaf01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1375,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:01",
+                "management_ip": "192.168.200.6",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "leaf02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1650,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:02",
+                "management_ip": "192.168.200.7",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "leaf03": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1925,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:03",
+                "management_ip": "192.168.200.8",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "leaf04": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 2200,
+                    "y": 275
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:04",
+                "management_ip": "192.168.200.9",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server01": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 825,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:01",
+                "management_ip": "192.168.200.10",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server02": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 1100,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:02",
+                "management_ip": "192.168.200.11",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server03": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 1375,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:03",
+                "management_ip": "192.168.200.12",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server04": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 1650,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:04",
+                "management_ip": "192.168.200.13",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server05": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 1925,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:05",
+                "management_ip": "192.168.200.14",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server06": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 2200,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:06",
+                "management_ip": "192.168.200.15",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server07": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 2475,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:07",
+                "management_ip": "192.168.200.18",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "server08": {
+                "cpu": 1,
+                "memory": 1024,
+                "storage": 10,
+                "positioning": {
+                    "x": 2750,
+                    "y": 550
+                },
+                "nic_model": "e1000",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "generic/ubuntu2204",
+                "management_mac": "44:38:39:11:01:08",
+                "management_ip": "192.168.200.19",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "spine01": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1375,
+                    "y": 0
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:05",
+                "management_ip": "192.168.200.2",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "spine02": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1650,
+                    "y": 0
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:06",
+                "management_ip": "192.168.200.3",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "spine03": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 1925,
+                    "y": 0
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:07",
+                "management_ip": "192.168.200.4",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            },
+            "spine04": {
+                "cpu": 2,
+                "memory": 4096,
+                "storage": 10,
+                "positioning": {
+                    "x": 2200,
+                    "y": 0
+                },
+                "nic_model": "virtio",
+                "cpu_mode": "custom",
+                "cpu_options": [],
+                "secureboot": false,
+                "os": "cumulus-vx-5.10.1",
+                "management_mac": "44:38:39:22:01:08",
+                "management_ip": "192.168.200.5",
+                "oob": false,
+                "storage_pci": {},
+                "pxehost": false,
+                "boot": "hd",
+                "features": {
+                    "uefi": false
+                }
+            }
+        },
+        "links": [
+            [
+                {
+                    "interface": "swp1",
+                    "node": "border01",
+                    "mac": "48:B0:2D:4B:60:F7"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server07",
+                    "mac": "48:B0:2D:10:DB:8A"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "border01",
+                    "mac": "48:B0:2D:3D:90:D6"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server08",
+                    "mac": "48:B0:2D:ED:A4:8C"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "border01",
+                    "mac": "48:B0:2D:F8:7E:26"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "fw1",
+                    "mac": "48:B0:2D:F6:F2:CF"
+                }
+            ],
+            [
+                {
+                    "interface": "swp4",
+                    "node": "border01",
+                    "mac": "48:B0:2D:AC:D1:1F"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "fw2",
+                    "mac": "48:B0:2D:22:8F:E9"
+                }
+            ],
+            [
+                {
+                    "interface": "swp49",
+                    "node": "border01",
+                    "mac": "48:B0:2D:96:75:D2"
+                },
+                {
+                    "interface": "swp49",
+                    "node": "border02",
+                    "mac": "48:B0:2D:7E:71:97"
+                }
+            ],
+            [
+                {
+                    "interface": "swp50",
+                    "node": "border01",
+                    "mac": "48:B0:2D:44:AA:A4"
+                },
+                {
+                    "interface": "swp50",
+                    "node": "border02",
+                    "mac": "48:B0:2D:9B:91:4C"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "border01",
+                    "mac": "48:B0:2D:9B:D1:B4"
+                },
+                {
+                    "interface": "swp5",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:92:34:F8"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "border01",
+                    "mac": "48:B0:2D:D3:A0:CE"
+                },
+                {
+                    "interface": "swp5",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:FF:5B:2D"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "border01",
+                    "mac": "48:B0:2D:83:79:81"
+                },
+                {
+                    "interface": "swp5",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:86:2C:31"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "border01",
+                    "mac": "48:B0:2D:37:F5:B8"
+                },
+                {
+                    "interface": "swp5",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:EB:19:CE"
+                }
+            ],
+            [
+                {
+                    "interface": "swp1",
+                    "node": "border02",
+                    "mac": "48:B0:2D:A5:9B:CE"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server07",
+                    "mac": "48:B0:2D:66:47:EF"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "border02",
+                    "mac": "48:B0:2D:E8:7A:0B"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server08",
+                    "mac": "48:B0:2D:A2:06:A9"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "border02",
+                    "mac": "48:B0:2D:0B:18:D1"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "fw1",
+                    "mac": "48:B0:2D:2D:56:D5"
+                }
+            ],
+            [
+                {
+                    "interface": "swp4",
+                    "node": "border02",
+                    "mac": "48:B0:2D:D7:B1:14"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "fw2",
+                    "mac": "48:B0:2D:60:35:4B"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "border02",
+                    "mac": "48:B0:2D:A3:B8:2F"
+                },
+                {
+                    "interface": "swp6",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:E4:F0:09"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "border02",
+                    "mac": "48:B0:2D:37:B5:56"
+                },
+                {
+                    "interface": "swp6",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:BB:1B:F4"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "border02",
+                    "mac": "48:B0:2D:10:EC:72"
+                },
+                {
+                    "interface": "swp6",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:92:B3:29"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "border02",
+                    "mac": "48:B0:2D:3B:D8:05"
+                },
+                {
+                    "interface": "swp6",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:5B:DD:38"
+                }
+            ],
+            [
+                {
+                    "interface": "swp1",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:F5:C4:15"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server01",
+                    "mac": "48:B0:2D:FB:0C:5B"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:DF:29:B6"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server02",
+                    "mac": "48:B0:2D:82:E9:54"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:E6:69:B6"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server03",
+                    "mac": "48:B0:2D:AB:52:15"
+                }
+            ],
+            [
+                {
+                    "interface": "swp49",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:A0:7E:37"
+                },
+                {
+                    "interface": "swp49",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:89:11:9E"
+                }
+            ],
+            [
+                {
+                    "interface": "swp50",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:92:76:EF"
+                },
+                {
+                    "interface": "swp50",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:33:4C:67"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:44:D8:BA"
+                },
+                {
+                    "interface": "swp1",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:05:C9:96"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:65:94:2F"
+                },
+                {
+                    "interface": "swp1",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:08:3A:E9"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:5B:B4:6E"
+                },
+                {
+                    "interface": "swp1",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:F5:7C:A4"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "leaf01",
+                    "mac": "48:B0:2D:86:D7:ED"
+                },
+                {
+                    "interface": "swp1",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:F6:0A:8A"
+                }
+            ],
+            [
+                {
+                    "interface": "swp1",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:AA:95:81"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server01",
+                    "mac": "48:B0:2D:FB:BE:CC"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:79:D9:C8"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server02",
+                    "mac": "48:B0:2D:D0:D2:9A"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:98:BC:D7"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server03",
+                    "mac": "48:B0:2D:3A:01:D5"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:96:3C:5A"
+                },
+                {
+                    "interface": "swp2",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:08:9F:B3"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:DB:33:C3"
+                },
+                {
+                    "interface": "swp2",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:42:85:47"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:67:0D:7C"
+                },
+                {
+                    "interface": "swp2",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:88:64:86"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "leaf02",
+                    "mac": "48:B0:2D:62:B3:00"
+                },
+                {
+                    "interface": "swp2",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:FC:7C:4C"
+                }
+            ],
+            [
+                {
+                    "interface": "swp1",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:61:40:22"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server04",
+                    "mac": "48:B0:2D:63:B0:E1"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:09:BE:24"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server05",
+                    "mac": "48:B0:2D:6B:40:85"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:1B:FE:60"
+                },
+                {
+                    "interface": "eth1",
+                    "node": "server06",
+                    "mac": "48:B0:2D:86:31:3D"
+                }
+            ],
+            [
+                {
+                    "interface": "swp49",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:F0:46:4F"
+                },
+                {
+                    "interface": "swp49",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:C8:1A:3B"
+                }
+            ],
+            [
+                {
+                    "interface": "swp50",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:81:59:80"
+                },
+                {
+                    "interface": "swp50",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:E1:86:67"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:89:95:18"
+                },
+                {
+                    "interface": "swp3",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:1D:E7:7D"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:AE:11:80"
+                },
+                {
+                    "interface": "swp3",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:C8:88:38"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:7C:04:9E"
+                },
+                {
+                    "interface": "swp3",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:7D:F5:67"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "leaf03",
+                    "mac": "48:B0:2D:52:B2:98"
+                },
+                {
+                    "interface": "swp3",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:43:22:C0"
+                }
+            ],
+            [
+                {
+                    "interface": "swp1",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:8F:E2:D3"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server04",
+                    "mac": "48:B0:2D:6E:6D:20"
+                }
+            ],
+            [
+                {
+                    "interface": "swp2",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:0E:33:17"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server05",
+                    "mac": "48:B0:2D:02:84:C8"
+                }
+            ],
+            [
+                {
+                    "interface": "swp3",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:E5:49:6F"
+                },
+                {
+                    "interface": "eth2",
+                    "node": "server06",
+                    "mac": "48:B0:2D:CA:6A:E7"
+                }
+            ],
+            [
+                {
+                    "interface": "swp51",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:54:14:5D"
+                },
+                {
+                    "interface": "swp4",
+                    "node": "spine01",
+                    "mac": "48:B0:2D:11:81:28"
+                }
+            ],
+            [
+                {
+                    "interface": "swp52",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:3B:22:7A"
+                },
+                {
+                    "interface": "swp4",
+                    "node": "spine02",
+                    "mac": "48:B0:2D:5A:E2:4A"
+                }
+            ],
+            [
+                {
+                    "interface": "swp53",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:C7:E8:0A"
+                },
+                {
+                    "interface": "swp4",
+                    "node": "spine03",
+                    "mac": "48:B0:2D:9A:75:CC"
+                }
+            ],
+            [
+                {
+                    "interface": "swp54",
+                    "node": "leaf04",
+                    "mac": "48:B0:2D:FF:53:40"
+                },
+                {
+                    "interface": "swp4",
+                    "node": "spine04",
+                    "mac": "48:B0:2D:13:27:BA"
+                }
+            ]
+        ],
+        "oob": {
+            "nodes": {
+                "oob-mgmt-server": {
+                    "cpu": 2,
+                    "memory": 2048,
+                    "storage": 10,
+                    "positioning": {
+                        "x": 825,
+                        "y": -275
+                    }
+                },
+                "oob-mgmt-switch": {
+                    "cpu": 5,
+                    "memory": 5120,
+                    "storage": 10,
+                    "positioning": {
+                        "x": 1100,
+                        "y": -275
+                    }
+                }
+            },
+            "enable_dhcp": true,
+            "subnets": {
+                "192.168.200.0/24": {
+                    "gateway_ip": "192.168.200.253"
+                }
+            }
+        }
+    },
+    "name": "CL5.10.1 - EVPN Centralized Routing Best Practices"
+}

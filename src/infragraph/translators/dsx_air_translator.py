@@ -4,7 +4,7 @@ import json
 
 from pathlib import Path
 from collections import OrderedDict
-from typing import Dict, List, Tuple
+from typing import Dict, List
 from infragraph import *
 
 # Operating-system markers used to classify a DSX Air node as a network switch.
@@ -19,7 +19,7 @@ SWITCH_OS_MARKERS = (
     "onie",
 )
 
-# Name of the top-level device that composes the whole translated fabric.
+# Name of the single device that represents the whole translated fabric.
 FABRIC_DEVICE_NAME = "dsx-air-fabric"
 
 
@@ -34,33 +34,6 @@ def _role_of(node_name: str) -> str:
 
 
 class DsxAirParser:
-    """Parser for DSX Air JSON topology files.
-
-    A DSX Air topology describes a multi-node fabric:
-
-        {
-            "title": "Demo",
-            "content": {
-                "nodes": { "<node>": {"cpu": .., "memory": .., "os": ".."}, ... },
-                "links": [ [{"interface": "..", "node": ".."}, {..}], ... ]
-            }
-        }
-
-    The topology is translated using InfraGraph device composition:
-
-        - Each role (``leaf01``/``leaf02`` -> ``leaf``) becomes its own sub-device
-          that contains a ``cpu`` component (count = that node's vCPUs, so the CPUs
-          live *inside* each leaf/spine/server) plus a functional component:
-          ``switch`` for network operating systems, ``nic`` for hosts.
-        - A top-level fabric device composes those sub-devices via ``device``-typed
-          components whose count is the number of nodes of that role
-          (``leaf`` count 2, ``spine`` count 1, ...).
-        - Node-to-node links are collapsed to role-to-role device edges between the
-          functional components (e.g. ``leaf.switch`` <-> ``spine.switch``).
-
-    Per-node memory/storage/os and per-interface detail are intentionally dropped.
-    """
-
     def __init__(self, file_path: str, name: str | None = None):
         _, ext = os.path.splitext(file_path)
         if ext.lower() != ".json":
@@ -73,10 +46,12 @@ class DsxAirParser:
         self.name = name
         self.infra = Infrastructure()
 
-        # node -> role (sub-device / composed-component name)
+        # node -> role (component name)
         self._role_of_node: Dict[str, str] = {}
-        # role -> functional component name ("switch" or "nic")
-        self._role_func: Dict[str, str] = {}
+        # node -> index of that node within its role (declaration order)
+        self._index_of_node: Dict[str, int] = {}
+        # role-pair key -> the Link connecting them
+        self._links: Dict[str, object] = {}
 
     def parse(self) -> Infrastructure:
         """Translate the DSX Air topology into an InfraGraph Infrastructure."""
@@ -88,18 +63,9 @@ class DsxAirParser:
         self.infra.name = self.name or title
         self.infra.description = f"DSX Air fabric translated from '{title}'"
 
-        roles = self._group_nodes_by_role(nodes)
-
-        # One composed sub-device per role.
-        for role, members in roles.items():
-            sub_device, func_name = self._build_role_device(role, members, nodes)
-            self.infra.devices.append(sub_device)
-            self._role_func[role] = func_name
-
-        # Top-level fabric device that composes the role sub-devices.
-        fabric = self._build_fabric_device(roles, links)
-        self.infra.devices.append(fabric)
-        self.infra.instances.add(name=fabric.name, device=fabric.name, count=1)
+        device = self._build_device(nodes, links)
+        self.infra.devices.append(device)
+        self.infra.instances.add(name=device.name, device=device.name, count=1)
 
         return self.infra
 
@@ -112,112 +78,68 @@ class DsxAirParser:
         roles: "OrderedDict[str, List[str]]" = OrderedDict()
         for node_name in nodes:
             role = _role_of(node_name)
-            roles.setdefault(role, []).append(node_name)
+            members = roles.setdefault(role, [])
             self._role_of_node[node_name] = role
+            self._index_of_node[node_name] = len(members)
+            members.append(node_name)
         return roles
 
-    def _build_role_device(
-        self, role: str, members: List[str], nodes: Dict[str, dict]
-    ) -> Tuple[Device, str]:
-        """Build a sub-device representing a single node of the given role.
-
-        The device holds its own ``cpu`` component (so CPUs are shown inside each
-        leaf/spine/server) plus a functional ``switch``/``nic`` component.
-        """
-        is_switch = any(
-            self._is_switch(nodes.get(node, {}).get("os", "")) for node in members
-        )
-
+    def _build_device(self, nodes: Dict[str, dict], links: List[List[dict]]) -> Device:
+        """Build the single fabric device with one high-level component per role."""
         device = Device()
-        device.name = role
-        device.description = f"{role} switch" if is_switch else f"{role} host"
+        device.name = self.name or FABRIC_DEVICE_NAME
+        device.description = "DSX Air fabric"
 
-        # CPUs live inside each node. Assume homogeneous vCPUs per role and take
-        # the representative (first) node's cpu count.
-        per_node_cpu = int(nodes.get(members[0], {}).get("cpu", 0) or 0)
-        if per_node_cpu > 0:
-            cpu = device.components.add(
-                name="cpu",
-                description="Generic CPU",
-                count=per_node_cpu,
-            )
-            cpu.choice = Component.CPU
-
-        # Functional component that the fabric wires together.
-        func_name = "switch" if is_switch else "nic"
-        func = device.components.add(
-            name=func_name,
-            description=f"{role} {func_name}",
-            count=1,
-        )
-        func.choice = Component.SWITCH if is_switch else Component.NIC
-
-        # Internal link so the cpu(s) and the functional component are connected.
-        if per_node_cpu > 0:
-            internal = device.links.add(
-                name="internal",
-                description="Internal device interconnect",
-            )
-            edge = device.edges.add(
-                scheme=DeviceEdge.MANY2MANY,
-                link=internal.name,
-            )
-            edge.ep1.component = "cpu"
-            edge.ep2.component = func_name
-        else:
-            # Ensure the required (but unused) links/edges containers are present.
-            device.links
-            device.edges
-
-        return device, func_name
-
-    def _build_fabric_device(
-        self, roles: "OrderedDict[str, List[str]]", links: List[List[dict]]
-    ) -> Device:
-        """Build the top-level device that composes the role sub-devices."""
-        fabric = Device()
-        fabric.name = self.name or FABRIC_DEVICE_NAME
-        fabric.description = "DSX Air fabric"
-
-        # One device-typed component per role (count = number of nodes).
+        # One high-level component per role.
+        roles = self._group_nodes_by_role(nodes)
         for role, members in roles.items():
-            component = fabric.components.add(
+            is_switch = any(
+                self._is_switch(nodes.get(node, {}).get("os", "")) for node in members
+            )
+            component = device.components.add(
                 name=role,
-                description=f"{role} nodes",
+                description=f"{role} switch" if is_switch else f"{role} host",
                 count=len(members),
             )
-            component.choice = Component.DEVICE
+            if is_switch:
+                component.choice = Component.SWITCH
+            else:
+                component.choice = Component.CUSTOM
+                component.custom.type = "host"
 
-        self._create_role_edges(fabric, links)
+        self._create_role_edges(device, links)
 
-        return fabric
+        return device
 
-    def _create_role_edges(self, fabric: Device, links: List[List[dict]]):
-        """Collapse node links to role-to-role device edges (one per unique pair).
+    def _create_role_edges(self, device: Device, links: List[List[dict]]):
+        """Translate node links to indexed instance-to-instance device edges.
 
-        Endpoints use composed paths (``<role>.<functional component>``) so the
-        edge connects the switch/nic inside each composed sub-device.
+        Each DSX Air link is a point-to-point connection between two specific
+        nodes, so it becomes a ``one2one`` edge between the exact component
+        instances involved (e.g. ``leaf[0]`` <-> ``server[0]``), preserving the
+        original wiring instead of collapsing it to a blanket ``many2many``.
+        One shared ``Link`` is defined per role pair and reused by its edges.
         """
-        seen: Dict[str, object] = {}
         for pair in links:
-            role_a = self._role_of_node[pair[0]["node"]]
-            role_b = self._role_of_node[pair[1]["node"]]
+            node_a, node_b = pair[0]["node"], pair[1]["node"]
+            role_a, role_b = self._role_of_node[node_a], self._role_of_node[node_b]
+            idx_a, idx_b = self._index_of_node[node_a], self._index_of_node[node_b]
+
             key = "-".join(sorted((role_a, role_b)))
-            if key in seen:
-                continue
+            link = self._links.get(key)
+            if link is None:
+                link = device.links.add(
+                    name=key,
+                    description=f"Connectivity between {role_a} and {role_b}",
+                )
+                self._links[key] = link
 
-            link = fabric.links.add(
-                name=key,
-                description=f"Connectivity between {role_a} and {role_b}",
-            )
-            seen[key] = link
-
-            edge = fabric.edges.add(
-                scheme=DeviceEdge.MANY2MANY,
+            edge = device.edges.add(
+                scheme=DeviceEdge.ONE2ONE,
                 link=link.name,
             )
-            edge.ep1.component = f"{role_a}.{self._role_func[role_a]}"
-            edge.ep2.component = f"{role_b}.{self._role_func[role_b]}"
+            edge.ep1.component = f"{role_a}[{idx_a}]"
+            edge.ep2.component = f"{role_b}[{idx_b}]"
 
 
 def run_dsx_air_parser(
