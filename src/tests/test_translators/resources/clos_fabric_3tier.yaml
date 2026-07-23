@@ -1,0 +1,531 @@
+description: Clos Fat Tree Fabric
+devices:
+-   components:
+    -   choice: cpu
+        count: 1
+        description: Generic CPU
+        name: cpu
+    -   choice: xpu
+        count: 2
+        description: Generic GPU/XPU
+        name: xpu
+    -   choice: switch
+        count: 1
+        description: NVLink Switch
+        name: nvlsw
+    -   choice: switch
+        count: 1
+        description: PCI Express Switch Gen 4
+        name: pciesw
+    -   choice: nic
+        count: 2
+        description: Generic Nic
+        name: nic
+    -   choice: custom
+        count: 1
+        custom:
+            type: mgmt-nic
+        description: Mgmt Nic
+        name: mgmt
+    description: A generic server with npu_factor * 4 xpu(s)
+    edges:
+    -   ep1:
+            component: mgmt
+        ep2:
+            component: cpu[0]
+        link: pcie
+        scheme: one2one
+    -   ep1:
+            component: cpu
+        ep2:
+            component: cpu
+        link: fabric
+        scheme: many2many
+    -   ep1:
+            component: xpu
+        ep2:
+            component: nvlsw
+        link: nvlink
+        scheme: many2many
+    -   ep1:
+            component: cpu[0]
+        ep2:
+            component: pciesw[0]
+        link: pcie
+        scheme: many2many
+    -   ep1:
+            component: xpu[0:2]
+        ep2:
+            component: pciesw[0]
+        link: pcie
+        scheme: many2many
+    -   ep1:
+            component: nic[0:2]
+        ep2:
+            component: pciesw[0]
+        link: pcie
+        scheme: many2many
+    links:
+    -   description: CPU Fabric
+        name: fabric
+    -   name: nvlink
+        physical:
+            bandwidth:
+                choice: gigatransfers_per_second
+            latency:
+                choice: ns
+    -   name: pcie
+        physical:
+            bandwidth:
+                choice: gigatransfers_per_second
+            latency:
+                choice: ns
+    name: server
+-   components:
+    -   choice: cpu
+        count: 1
+        description: Generic ASIC
+        name: asic
+    -   choice: port
+        count: 4
+        description: Generic port
+        name: port
+    description: A generic switch
+    edges:
+    -   ep1:
+            component: asic
+        ep2:
+            component: port
+        link: ic
+        scheme: many2many
+    links:
+    -   description: Generic integrated circuitry
+        name: ic
+        physical:
+            bandwidth:
+                choice: gigatransfers_per_second
+            latency:
+                choice: ns
+    name: switch
+edges:
+-   ep1:
+        component: nic[0]
+        instance: server[0]
+    ep2:
+        component: port[0]
+        instance: tier_0[0]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[0]
+    ep2:
+        component: port[1]
+        instance: tier_0[0]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[1]
+    ep2:
+        component: port[0]
+        instance: tier_0[1]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[1]
+    ep2:
+        component: port[1]
+        instance: tier_0[1]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[2]
+    ep2:
+        component: port[0]
+        instance: tier_0[2]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[2]
+    ep2:
+        component: port[1]
+        instance: tier_0[2]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[3]
+    ep2:
+        component: port[0]
+        instance: tier_0[3]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[3]
+    ep2:
+        component: port[1]
+        instance: tier_0[3]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[4]
+    ep2:
+        component: port[0]
+        instance: tier_0[4]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[4]
+    ep2:
+        component: port[1]
+        instance: tier_0[4]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[5]
+    ep2:
+        component: port[0]
+        instance: tier_0[5]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[5]
+    ep2:
+        component: port[1]
+        instance: tier_0[5]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[6]
+    ep2:
+        component: port[0]
+        instance: tier_0[6]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[6]
+    ep2:
+        component: port[1]
+        instance: tier_0[6]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[0]
+        instance: server[7]
+    ep2:
+        component: port[0]
+        instance: tier_0[7]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: nic[1]
+        instance: server[7]
+    ep2:
+        component: port[1]
+        instance: tier_0[7]
+    link: tier_0_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[0]
+    ep2:
+        component: port[2]
+        instance: tier_0[0]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[0]
+    ep2:
+        component: port[2]
+        instance: tier_0[1]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[1]
+    ep2:
+        component: port[3]
+        instance: tier_0[0]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[1]
+    ep2:
+        component: port[3]
+        instance: tier_0[1]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[2]
+    ep2:
+        component: port[2]
+        instance: tier_0[2]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[2]
+    ep2:
+        component: port[2]
+        instance: tier_0[3]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[3]
+    ep2:
+        component: port[3]
+        instance: tier_0[2]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[3]
+    ep2:
+        component: port[3]
+        instance: tier_0[3]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[4]
+    ep2:
+        component: port[2]
+        instance: tier_0[4]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[4]
+    ep2:
+        component: port[2]
+        instance: tier_0[5]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[5]
+    ep2:
+        component: port[3]
+        instance: tier_0[4]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[5]
+    ep2:
+        component: port[3]
+        instance: tier_0[5]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[6]
+    ep2:
+        component: port[2]
+        instance: tier_0[6]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[6]
+    ep2:
+        component: port[2]
+        instance: tier_0[7]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_1[7]
+    ep2:
+        component: port[3]
+        instance: tier_0[6]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_1[7]
+    ep2:
+        component: port[3]
+        instance: tier_0[7]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_2[0]
+    ep2:
+        component: port[2]
+        instance: tier_1[0]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_2[0]
+    ep2:
+        component: port[2]
+        instance: tier_1[2]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[2]
+        instance: tier_2[0]
+    ep2:
+        component: port[2]
+        instance: tier_1[4]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[3]
+        instance: tier_2[0]
+    ep2:
+        component: port[2]
+        instance: tier_1[6]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_2[1]
+    ep2:
+        component: port[3]
+        instance: tier_1[0]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_2[1]
+    ep2:
+        component: port[3]
+        instance: tier_1[2]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[2]
+        instance: tier_2[1]
+    ep2:
+        component: port[3]
+        instance: tier_1[4]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[3]
+        instance: tier_2[1]
+    ep2:
+        component: port[3]
+        instance: tier_1[6]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_2[2]
+    ep2:
+        component: port[2]
+        instance: tier_1[1]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_2[2]
+    ep2:
+        component: port[2]
+        instance: tier_1[3]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[2]
+        instance: tier_2[2]
+    ep2:
+        component: port[2]
+        instance: tier_1[5]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[3]
+        instance: tier_2[2]
+    ep2:
+        component: port[2]
+        instance: tier_1[7]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[0]
+        instance: tier_2[3]
+    ep2:
+        component: port[3]
+        instance: tier_1[1]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[1]
+        instance: tier_2[3]
+    ep2:
+        component: port[3]
+        instance: tier_1[3]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[2]
+        instance: tier_2[3]
+    ep2:
+        component: port[3]
+        instance: tier_1[5]
+    link: tier_1_link
+    scheme: one2one
+-   ep1:
+        component: port[3]
+        instance: tier_2[3]
+    ep2:
+        component: port[3]
+        instance: tier_1[7]
+    link: tier_1_link
+    scheme: one2one
+instances:
+-   count: 8
+    device: server
+    name: server
+-   count: 8
+    device: switch
+    name: tier_0
+-   count: 8
+    device: switch
+    name: tier_1
+-   count: 4
+    device: switch
+    name: tier_2
+links:
+-   description: Link characteristics for connectivity between host and tier 0 switches
+    name: tier_0_link
+    physical:
+        bandwidth:
+            choice: gigabits_per_second
+            gigabits_per_second: 100
+        latency:
+            choice: ns
+-   description: Link characteristics for connectivity between tier 0 and tier 1 switches
+    name: tier_1_link
+    physical:
+        bandwidth:
+            choice: gigabits_per_second
+            gigabits_per_second: 200
+        latency:
+            choice: ns
+-   description: Link characteristics for connectivity between tier 1 and tier 2 switches
+    name: tier_2_link
+    physical:
+        bandwidth:
+            choice: gigabits_per_second
+            gigabits_per_second: 400
+name: clos-fat-tree-fabric
